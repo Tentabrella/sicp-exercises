@@ -15,14 +15,68 @@
 (define (p) (p))
 (define (test x y)
   (if (= x 0) x
-           y))
+      y))
 (test 0 p)
-;;normal order evaluation only evaluate value when needed
-;;applicative order will evaluate as soon as it is in. why applicative? evaluated before apply!
-;;as result is normal order evaluation
+;normal order evaluation only evaluate value when needed
+;applicative order will evaluate as soon as it is in. why applicative? evaluated before apply!
+;;as result if is normal order evaluation
 
 
 ;;1.6
+(load "success-close.rkt")
+(load "improve-guess.rkt")
+
 (define (new-if predicate then-clause else-clause)
   (cond (predicate then-clause)
         (else else-clause)))
+
+(new-if (= 2 2) 0 1)
+
+(load "success-close.rkt")
+(load "improve-guess.rkt")
+
+#|
+(define (square-iter guess x)
+  (new-if (success-close guess x)
+          guess
+          (square-iter (improve-guess guess x) x)
+          )
+  )
+|#
+;(success-close 3 9)
+
+;even define will cause infinite loop
+;difference demonstrated by following
+(display "\nnew-if:\n")
+(new-if #t (display "true\t") (display "false\t"))
+(display "\nif:\n")
+(if #t (display "true\t") (display "false\t"))
+(display "\n")
+
+;;1.7
+(load "square-x-iter.rkt")
+
+;big -> infinite loop
+;(square-x-iter 1 10000000)
+
+;small -> wrong answer
+;(square-x-iter 1 0.000001)
+(square-x-iter-refine 1 0.000001)
+(square-x-iter-refine 1 1000000)
+
+;;1.8
+(define (improve-cube y x)
+  (/ (+ (/ x (square y)) (* 2 y)) 3)
+  )
+
+(define (cube-x-iter guess x)
+  (let ((new-guess (improve-cube guess x)))
+  (if (good-enough? guess new-guess)
+       new-guess
+      (cube-x-iter new-guess x)
+      )
+    )
+)
+
+(cube-x-iter 3 100)
+
