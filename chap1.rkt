@@ -178,6 +178,7 @@ def2:
 #|
 count-change 的阶
 和fib差不多，fib是平方，那么count同样是平方或者立方或者云云，小于阶乘，至少平方
+theta n^k 没看证明
 |#
 
 ;;1.15
@@ -190,6 +191,8 @@ count-change 的阶
   )
 
 (sine 12.15)
+
+
 
 
 
