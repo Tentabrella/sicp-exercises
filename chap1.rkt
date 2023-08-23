@@ -192,6 +192,17 @@ theta n^k 没看证明
 
 (sine 12.15)
 
+;;1.20
+#|
+若采用正则序
+(gcd 206 40)
+(gcd 40 (remainder 206 40))
+(gcd (remainder 206 40) (remainder 40 (remainder 206 40))
+可以看到正则序有相当多重复计算,所以一般采用应用序
+|#
+
+
+
 
 
 
