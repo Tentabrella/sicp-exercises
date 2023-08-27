@@ -192,6 +192,18 @@ theta n^k 没看证明
 
 (sine 12.15)
 
+;;1.17
+(define (double x)
+  (* 2 x))
+(define (halve x)
+  (if (even? x)
+      (/ x 2)
+      (error "输入无效")))
+(define (fast-mul a b)
+  (if (
+ (if (even? b)
+     (double (fast-mul a (halve b)))
+     (+ a (fast-mul a (- b 1)))))
 
 
 
