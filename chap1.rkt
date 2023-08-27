@@ -204,6 +204,17 @@ theta n^k 没看证明
  (if (even? b)
      (double (fast-mul a (halve b)))
      (+ a (fast-mul a (- b 1)))))
+;;1.20
+#|
+若采用正则序
+(gcd 206 40)
+(gcd 40 (remainder 206 40))
+(gcd (remainder 206 40) (remainder 40 (remainder 206 40))
+可以看到正则序有相当多重复计算,所以一般采用应用序
+|#
+
+
+
 
 
 
